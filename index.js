@@ -1,4 +1,4 @@
-const Array = [45, 66, 16]
+const array = [45, 66, 16]
 const obj = {
   name: 'John',
   age: 25,
@@ -18,33 +18,23 @@ const { right, wrong } = function filter(array, callback) {
   return { right, wrong }
 }
 
-function mappingObj(obj, callback) {
-  if (typeof obj === 'object' && obj !== null && !Array.isArray(obj)) {
-    const mappedObj = {}
-    for (const key in obj) {
-      if (key in obj) {
-        mappedObj[key] = callback(obj[key], key, obj)
-      }
+function mapping(arrandobj, callback) {
+  if (Array.isArray(arrandobj)) {
+    const newArray = []
+    arrandobj.forEach((item) => {
+      newArray.push(callback(item))
+    })
+    return newArray;
+  } else if (typeof arrandobj === 'object' && arrandobj !== null) {
+    const newObj = {}
+    for (let key of Object.keys(arrandobj)) {
+      newObj[key] = callback(arrandobj[key])
     }
-    return mappedObj
+    return newObj
   } else {
     alert('Ошибка валидации')
   }
 }
-
-function mappingArr(Array, callback) {
-  if (Array.isArray(Array)) {
-    const mappedArr = []
-    for (let i = 0; i < Array.length; i++) {
-      mappedArr[i] = callback(arr[i], i, Array)
-    }
-    return mappedArr
-  } else {
-    alert('Ошибка валидации')
-  }
-}
-
-
 
 
     
